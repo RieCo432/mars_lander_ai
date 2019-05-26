@@ -275,6 +275,14 @@ if __name__ == "__main__":
             games_over = []
             for game in all_games:
                 games_over.append(game.gameover)
+            for i in range(len(games_over)):
+                if all_games[0].gameover and not all_games[i].gameover:
+                    all_games[active_game].drawing = False
+                    active_game = i
+                    all_games[active_game].drawing = True
+                    break
+                elif all(games_over):
+                    active_game = 0
             pygame.display.set_caption("Mars Lander, Active game: %d, Gen %d" % (active_game, pop.generation))
             pygame.display.flip()
         print("evolving, gen %d" % pop.generation)
