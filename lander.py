@@ -62,6 +62,12 @@ class Lander(pygame.sprite.Sprite):
             self.dead = True
             self.damage = 1
             return False
+        elif self.rect.centerx - self.rect.width / 2 < pad.rect.centerx - pad.rect.width / 2:
+            self.dead = True
+            self.damage = 1
+        elif self.rect.centerx + self.rect.width / 2 > pad.rect.centerx + pad.rect.width / 2:
+            self.dead = True
+            self.damage = 1
         else:
             return True
 

@@ -275,7 +275,7 @@ if __name__ == "__main__":
             games_over = []
             for game in all_games:
                 games_over.append(game.gameover)
-            pygame.display.set_caption("Mars Lander, Active game: %d" % active_game)
+            pygame.display.set_caption("Mars Lander, Active game: %d, Gen %d" % (active_game, pop.generation))
             pygame.display.flip()
         print("evolving, gen %d" % pop.generation)
         for game in all_games:
