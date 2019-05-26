@@ -233,7 +233,7 @@ class Game:
 
 
 if __name__ == "__main__":
-    pop = Population(input_nodes=7, output_nodes=3, bias_node=False, init_random_connections=0, filename="pop_test6.json",
+    pop = Population(input_nodes=7, output_nodes=3, bias_node=False, init_random_connections=0, filename="pop_test7.json",
                  population_size=200, num_of_bests=1, activation_function=ActivationFunctions.step)
 
     all_games = []

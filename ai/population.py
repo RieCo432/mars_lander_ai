@@ -18,7 +18,6 @@ class Population:
         self.all_networks = []
         self.generation = 1
         self.best_fitness = 0
-        self.max_fitness_indexs = [0]
         self.fitness_sum = 0
         self.input_nodes = input_nodes
         self.output_nodes = output_nodes
@@ -105,14 +104,15 @@ class Population:
             new_nets.append(Network(self.input_nodes, self.output_nodes, bias_node=self.bias_node,
                                     activation_function=self.activation_function, sigmoid_factor=self.sigmoid_factor))
 
-        for i in range(self.num_of_bests):
-            new_nets[i].all_nodes = deepcopy(self.all_networks[self.max_fitness_indexs[i]].all_nodes)
-            new_nets[i].all_connections = deepcopy(self.all_networks[self.max_fitness_indexs[i]].all_connections)
-            new_nets[i].is_best = True
-
         self.fitness_sum = 0
         for net in self.all_networks:
             self.fitness_sum += net.fitness
+
+        for i in range(self.num_of_bests):
+            new_nets[i].all_nodes = deepcopy(self.all_networks[self.best_networks_indexes[i]].all_nodes)
+            new_nets[i].all_connections = deepcopy(self.all_networks[self.best_networks_indexes[i]].all_connections)
+            new_nets[i].is_best = True
+
 
         for i in range(self.num_of_bests, self.population_size):
             parent = self._select_parent()
