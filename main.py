@@ -228,6 +228,7 @@ class Game:
                                                 1-1/self.lander.x_vel, 1-1/self.lander.y_vel,
                                                 self.lander.angle / 180, left_down, middle_down, right_down]
                 self.neural_network.set_inputs(inputs)
+                print(inputs)
 
                 self.neural_network.feed_forward()
 
