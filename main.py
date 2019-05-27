@@ -224,8 +224,8 @@ class Game:
                         if middle_down < 1-((landing_pad.rect.centery - self.lander.y)/750):
                             middle_down = 1-((landing_pad.rect.centery - self.lander.y)/750)
 
-                inputs = [1-1/round(1000 / 750 * (750 - self.lander.y)),
-                                                1-1/self.lander.x_vel, 1-1/self.lander.y_vel,
+                inputs = [1/(751 - self.lander.y),
+                                                self.lander.x_vel/100, self.lander.y_vel/100,
                                                 self.lander.angle / 180, left_down, middle_down, right_down]
                 self.neural_network.set_inputs(inputs)
                 print(inputs)
