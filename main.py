@@ -134,11 +134,11 @@ class Game:
 
                 controls = self.neural_network.get_outputs()
 
-                if controls[0] == 1:  # left
+                if controls[0] >= 0.5:  # left
                     self.lander.rotate(5)
-                if controls[1] == 1:
+                if controls[1] >= 0.5:
                     self.lander.thrust()
-                if controls[2] == 1:
+                if controls[2] >= 0.5:
                     self.lander.rotate(5)
 
 
@@ -233,8 +233,8 @@ class Game:
 
 
 if __name__ == "__main__":
-    pop = Population(input_nodes=7, output_nodes=3, bias_node=False, init_random_connections=0, filename="pop_test7.json",
-                 population_size=200, num_of_bests=1, activation_function=ActivationFunctions.step)
+    pop = Population(input_nodes=7, output_nodes=3, bias_node=False, init_random_connections=0, filename="pop_test8.json",
+                 population_size=500, num_of_bests=1, activation_function=ActivationFunctions.sigmoid, sigmoid_factor=-4.9)
 
     all_games = []
     active_game = 0
