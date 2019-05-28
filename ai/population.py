@@ -45,13 +45,13 @@ class Population:
                 nets = deepcopy(population_dict["nets"])
                 self.input_nodes = population_dict["input_nodes"]
                 self.output_nodes = population_dict["output_nodes"]
-                self.bias_node = population_dict["bias_node"] == "True"
+                self.bias_node = population_dict["bias_node"]
                 self.num_of_bests = population_dict["num_of_bests"]
                 self.activation_function = population_dict["act_func"]
                 self.sigmoid_factor = population_dict["sigmoid_fact"]
                 for net in nets:
                     import_net = Network(population_dict["input_nodes"], population_dict["output_nodes"],
-                                         bias_node=population_dict["bias_node"] == "True",
+                                         bias_node=self.bias_node,
                                          activation_function=self.activation_function,
                                          sigmoid_factor=self.sigmoid_factor)
                     import_nodes = []
@@ -108,11 +108,10 @@ class Population:
         for net in self.all_networks:
             self.fitness_sum += net.fitness
 
-        for i in range(self.num_of_bests):
+        for i in range(0, self.num_of_bests):
             new_nets[i].all_nodes = deepcopy(self.all_networks[self.best_networks_indexes[i]].all_nodes)
             new_nets[i].all_connections = deepcopy(self.all_networks[self.best_networks_indexes[i]].all_connections)
             new_nets[i].is_best = True
-
 
         for i in range(self.num_of_bests, self.population_size):
             parent = self._select_parent()

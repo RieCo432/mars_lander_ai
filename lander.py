@@ -12,7 +12,8 @@ class Lander(pygame.sprite.Sprite):
         self.x = 600
         self.y = self.rect.height / 2
         self.rect.center = (self.x, self.y)
-        self.x_vel = uniform(-1, 1)
+        # self.x_vel = uniform(-1, 1)
+        self.x_vel = 0
         self.y_vel = uniform(0, 1)
         self.damage = 0
         self.angle = 0
@@ -75,5 +76,6 @@ class Lander(pygame.sprite.Sprite):
         self.x = 600
         self.y = self.rect.height / 2
         self.rect.center = (self.x, self.y)
-        self.x_vel = uniform(-1, 1)
+        # self.x_vel = uniform(-1, 1)
+        self.x_vel = 0
         self.y_vel = uniform(0, 1)

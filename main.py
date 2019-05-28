@@ -134,12 +134,15 @@ class Game:
 
                 controls = self.neural_network.get_outputs()
 
-                if controls[0] >= 0.5:  # left
-                    self.lander.rotate(5)
+                if controls[0] >= 0.4:  # right
+                    self.lander.rotate(-5)
+                if controls[0] <= -0.4:
+                    self.lander.rotate(5)  # left
                 if controls[1] >= 0.5:
                     self.lander.thrust()
-                if controls[2] >= 0.5:
-                    self.lander.rotate(5)
+                    if self.lander.fuel >= 5:
+                        thrusting = True
+                        thrust_counter = 5
 
 
             self.allsprites.update()
@@ -220,7 +223,7 @@ class Game:
                     if abs(landing_pad.rect.centerx - self.lander.x)  - landing_pad.rect.width / 2 > 750 - self.lander.y > abs(landing_pad.rect.centerx - self.lander.x) + landing_pad.rect.width / 2:
                         if right_down < 1-(sqrt((self.lander.x - landing_pad.rect.centerx)**2 + (self.lander.y - landing_pad.rect.centery)**2)/800):
                             right_down = 1-(sqrt((self.lander.x - landing_pad.rect.centerx)**2 + (self.lander.y - landing_pad.rect.centery)**2)/800)
-                    if landing_pad.rect.centerx - landing_pad.rect.width / 2 < self.lander.x < landing_pad.rect.centerx + landing_pad.rect.width / 2:
+                    if landing_pad.rect.centerx - landing_pad.rect.width / 2 + self.lander.rect.width / 2 < self.lander.x < landing_pad.rect.centerx + landing_pad.rect.width / 2 - self.lander.rect.width / 2 :
                         if middle_down < 1-((landing_pad.rect.centery - self.lander.y)/750):
                             middle_down = 1-((landing_pad.rect.centery - self.lander.y)/750)
 
@@ -234,8 +237,8 @@ class Game:
 
 
 if __name__ == "__main__":
-    pop = Population(input_nodes=7, output_nodes=3, bias_node=False, init_random_connections=0, filename="pop_test8.json",
-                 population_size=500, num_of_bests=1, activation_function=ActivationFunctions.sigmoid, sigmoid_factor=-4.9)
+    pop = Population(input_nodes=7, output_nodes=2, bias_node=True, init_random_connections=0, filename="pop_test9.json",
+                 population_size=1000, num_of_bests=1, activation_function=ActivationFunctions.sigmoid, sigmoid_factor=-4.9)
 
     all_games = []
     active_game = 0
