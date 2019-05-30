@@ -163,10 +163,10 @@ class Game:
                 if self.lander.pad_collide(collidedpad):
                     self.score += 50
                     display_text(screen, "Landed!", 600, 375)
-                    print("landed")
-                    #pygame.display.flip()
-                    #sleep(0.5)
-                    #self.wait_key()
+                    # print("landed")
+                    # pygame.display.flip()
+                    # sleep(0.5)
+                    # self.wait_key()
                     self.lander.reset()
                     self.starttime = datetime.now()
 
@@ -260,7 +260,7 @@ class Game:
 
 
 if __name__ == "__main__":
-    pop = Population(input_nodes=7, output_nodes=2, bias_node=True, init_random_connections=0, filename="pop_test10.json",
+    pop = Population(input_nodes=7, output_nodes=2, bias_node=True, init_random_connections=0, filename="pop_test11.json",
                  population_size=1000, num_of_bests=1, activation_function=ActivationFunctions.sigmoid, sigmoid_factor=-4.9)
 
     all_games = []
