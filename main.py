@@ -60,6 +60,10 @@ class Game:
         self.drawing = False
         self.slow_down_learned = False
         self.straight_angle_learned = False
+        self.gain_xvel_learned = False
+        self.point_against_xvel_learned = False
+        self.xvel_slowdown_learned = False
+        self.cancel_xvel_learned = False
 
     def show_telemetry(self, screen):
         elapsed_time = (datetime.now() - self.starttime).total_seconds()
@@ -186,6 +190,14 @@ class Game:
                         self.neural_network.fitness_boosts.append(35)
                     if self.straight_angle_learned:
                         self.neural_network.fitness_boosts.append(20)
+                    if self.gain_xvel_learned:
+                        self.neural_network.fitness_boosts.append(100)
+                    if self.point_against_xvel_learned:
+                        self.neural_network.fitness_boosts.append(100)
+                    if self.xvel_slowdown_learned:
+                        self.neural_network.fitness_boosts.append(200)
+                    if self.cancel_xvel_learned:
+                        self.neural_network.fitness_boosts.append(30)
                     self.gameover = True
 
             if self.drawing:
@@ -202,13 +214,24 @@ class Game:
 
             if self.lander.y > 680 and self.lander.x_vel < 5 and self.lander.y_vel < 5:
                 self.slow_down_learned = True
-            else:
-                self.slow_down_learned = False
 
             if self.lander.y > 680 and self.lander.angle == 0:
                 self.straight_angle_learned = True
-            else:
-                self.straight_angle_learned = False
+
+            if self.lander.x_vel != 0:
+                self.gain_xvel_learned = True
+
+            if self.lander.angle > 0 and self.lander.x_vel > 0:
+                self.point_against_xvel_learned = True
+            elif self.lander.angle < 0 and self.lander.x_vel < 0:
+                self.point_against_xvel_learned = True
+
+            if self.gain_xvel_learned and self.point_against_xvel_learned and self.lander.x_vel < 5:
+                self.xvel_slowdown_learned = True
+
+            if self.gain_xvel_learned and self.point_against_xvel_learned and self.lander.x_vel == 0:
+                self.cancel_xvel_learned = True
+
 
             if self.neural_network is not None:
 
@@ -237,7 +260,7 @@ class Game:
 
 
 if __name__ == "__main__":
-    pop = Population(input_nodes=7, output_nodes=2, bias_node=True, init_random_connections=0, filename="pop_test9.json",
+    pop = Population(input_nodes=7, output_nodes=2, bias_node=True, init_random_connections=0, filename="pop_test10.json",
                  population_size=1000, num_of_bests=1, activation_function=ActivationFunctions.sigmoid, sigmoid_factor=-4.9)
 
     all_games = []
