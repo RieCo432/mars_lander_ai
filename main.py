@@ -191,11 +191,11 @@ class Game:
                     if self.straight_angle_learned:
                         self.neural_network.fitness_boosts.append(20)
                     if self.gain_xvel_learned:
-                        self.neural_network.fitness_boosts.append(100)
+                        self.neural_network.fitness_boosts.append(40)
                     if self.point_against_xvel_learned:
-                        self.neural_network.fitness_boosts.append(100)
+                        self.neural_network.fitness_boosts.append(50)
                     if self.xvel_slowdown_learned:
-                        self.neural_network.fitness_boosts.append(200)
+                        self.neural_network.fitness_boosts.append(50)
                     if self.cancel_xvel_learned:
                         self.neural_network.fitness_boosts.append(30)
                     self.gameover = True
@@ -260,7 +260,7 @@ class Game:
 
 
 if __name__ == "__main__":
-    pop = Population(input_nodes=7, output_nodes=2, bias_node=True, init_random_connections=0, filename="pop_test11.json",
+    pop = Population(input_nodes=7, output_nodes=2, bias_node=True, init_random_connections=0, filename="pop_test12.json",
                  population_size=1000, num_of_bests=1, activation_function=ActivationFunctions.sigmoid, sigmoid_factor=-4.9)
 
     all_games = []
