@@ -167,6 +167,21 @@ class Game:
                     # pygame.display.flip()
                     # sleep(0.5)
                     # self.wait_key()
+
+                    for landing_pad in self.maxipads:
+                        # remove all landing pads
+                        self.allsprites.remove(landing_pad)
+                        self.maxipads.remove(landing_pad)
+
+                    for i in range(3):
+                        newpad = Pad(low=True)
+                        while pygame.sprite.spritecollideany(newpad,
+                                                             self.maxipads) is not None or pygame.sprite.spritecollideany(
+                                newpad, self.obstacles) is not None:
+                            newpad = Pad(low=True)
+                        self.maxipads.add(newpad)
+                        self.allsprites.add(newpad)
+
                     self.lander.reset()
                     self.starttime = datetime.now()
 
@@ -180,6 +195,21 @@ class Game:
                     #pygame.display.flip()
                     #sleep(0.5)
                     #self.wait_key()
+
+                    for landing_pad in self.maxipads:
+                        # remove all landing pads
+                        self.allsprites.remove(landing_pad)
+                        self.maxipads.remove(landing_pad)
+
+                    for i in range(3):
+                        newpad = Pad(low=True)
+                        while pygame.sprite.spritecollideany(newpad,
+                                                             self.maxipads) is not None or pygame.sprite.spritecollideany(
+                                newpad, self.obstacles) is not None:
+                            newpad = Pad(low=True)
+                        self.maxipads.add(newpad)
+                        self.allsprites.add(newpad)
+
                     self.starttime = datetime.now()
                 else:
                     display_text(screen, "Game over!", 600, 375)
