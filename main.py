@@ -217,9 +217,9 @@ class Game:
                     #sleep(0.5)
                     #self.wait_key()
                     if self.slow_down_learned:
-                        self.neural_network.fitness_boosts.append(35)
+                        self.neural_network.fitness_boosts.append(150)
                     if self.straight_angle_learned:
-                        self.neural_network.fitness_boosts.append(20)
+                        self.neural_network.fitness_boosts.append(150)
                     if self.gain_xvel_learned:
                         self.neural_network.fitness_boosts.append(40)
                     if self.point_against_xvel_learned:
@@ -290,7 +290,7 @@ class Game:
 
 
 if __name__ == "__main__":
-    pop = Population(input_nodes=7, output_nodes=2, bias_node=True, init_random_connections=0, filename="pop_test12.json",
+    pop = Population(input_nodes=7, output_nodes=2, bias_node=True, init_random_connections=0, filename="pop_test13.json",
                  population_size=1000, num_of_bests=1, activation_function=ActivationFunctions.sigmoid, sigmoid_factor=-4.9)
 
     all_games = []
